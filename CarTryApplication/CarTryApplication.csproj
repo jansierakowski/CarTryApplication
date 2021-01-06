@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>CarTryApplication</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarTry.App\CarTry.App.csproj" />
+    <ProjectReference Include="..\CarTry.Domain\CarTry.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
