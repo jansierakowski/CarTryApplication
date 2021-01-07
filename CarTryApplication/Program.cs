@@ -10,8 +10,10 @@ namespace CarTryApplication
     {
         static void Main(string[] args)
         {
+
             MenuActionService actionService = new MenuActionService();
-            ItemManger itemManger = new ItemManger(actionService);
+            ItemService itemService = new ItemService();
+            ItemManager itemManager = new ItemManager(actionService, itemService);
 
             Console.WriteLine("Welcome in first car test&try community");
             Console.WriteLine("Select what you want to do:");
@@ -30,18 +32,18 @@ namespace CarTryApplication
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        var newId = itemManger.AddNewItem();
+                        var newId = itemManager.AddNewItem();
                         break;
                     case '2':
-                        var removeId = itemManger.RemoveItem();
+                        var removeId = itemManager.RemoveItem();
                         Console.WriteLine();
                         break;
                     case '3':
-                        var detailId = itemManger.ItemDetail();
+                        var detailId = itemManager.ItemDetail();
                         Console.WriteLine();
                         break;
                     case '4':
-                        var brandToShow = itemManger.CarBrandsByType();
+                        var brandToShow = itemManager.CarBrandsByType();
                         Console.WriteLine();
                         break;
                     default:

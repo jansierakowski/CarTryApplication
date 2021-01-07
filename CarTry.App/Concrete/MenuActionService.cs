@@ -8,8 +8,6 @@ namespace CarTry.App.Concrete
 {
     public class MenuActionService : BaseService<MenuAction>
     {
-        private List<MenuAction> menuActions;
-
         public MenuActionService()
         {
             Initialize();

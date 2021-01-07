@@ -61,9 +61,6 @@ namespace CarTry.App.Common
             var itemById = Items.FirstOrDefault(p => p.Id == id);
             return itemById;
         }
-
-      
-
     }
 }
 

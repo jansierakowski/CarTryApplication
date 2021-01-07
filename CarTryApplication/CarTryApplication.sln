@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarTryApplication", "CarTryApplication.csproj", "{3FEE1904-0218-4361-8D4F-400FEE435FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarTry.App", "..\CarTry.App\CarTry.App.csproj", "{05D8532F-AEEC-4684-BCA4-E7C0BB9135E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarTry.App", "..\CarTry.App\CarTry.App.csproj", "{05D8532F-AEEC-4684-BCA4-E7C0BB9135E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarTry.Domain", "..\CarTry.Domain\CarTry.Domain.csproj", "{3FF22EB9-0BB4-4F1B-9FAD-C847DC9AA82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarTry.Domain", "..\CarTry.Domain\CarTry.Domain.csproj", "{3FF22EB9-0BB4-4F1B-9FAD-C847DC9AA82B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarTry.Test", "..\CarTry.Test\CarTry.Test.csproj", "{758B0E28-7557-4167-8F57-4E71DB857FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3FF22EB9-0BB4-4F1B-9FAD-C847DC9AA82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF22EB9-0BB4-4F1B-9FAD-C847DC9AA82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF22EB9-0BB4-4F1B-9FAD-C847DC9AA82B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{758B0E28-7557-4167-8F57-4E71DB857FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{758B0E28-7557-4167-8F57-4E71DB857FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{758B0E28-7557-4167-8F57-4E71DB857FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{758B0E28-7557-4167-8F57-4E71DB857FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

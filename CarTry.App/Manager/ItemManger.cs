@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace CarTry.App.Manager
 {
-    public class ItemManger
+    public class ItemManager
     {
         private readonly MenuActionService _actionService;
         private ItemService _itemService;
-        public ItemManger(MenuActionService actionService)
+        public ItemManager(MenuActionService actionService, ItemService itemService)
         {
-            _itemService = new ItemService();
+            _itemService = itemService;
             _actionService = actionService;
         }
         public int AddNewItem()
@@ -71,5 +71,15 @@ namespace CarTry.App.Manager
             Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model" }, a => a.Id, a => a.CarBrand, a => a.CarModel));
             return toShow;
         }
+
+
+        public Item GetItemById(int id)
+        {
+            var item = _itemService.GetItemById(id);
+            return item;
+        }
+
+
+
     }
 }
