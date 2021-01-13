@@ -26,7 +26,7 @@ namespace CarTry.App.Common
             return Items;
         }
 
-        public void RemoveItem(T item)
+        public virtual void RemoveItem(T item)
         {
             Items.Remove(item);
         }
@@ -56,11 +56,15 @@ namespace CarTry.App.Common
             return lastId;
         }
 
-        public T GetItemById(int id)
+        public virtual T GetItemById(int id)
         {
             var itemById = Items.FirstOrDefault(p => p.Id == id);
             return itemById;
         }
+
+
+
+
     }
 }
 

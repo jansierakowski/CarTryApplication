@@ -32,20 +32,21 @@ namespace CarTryApplication
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        var newId = itemManager.AddNewItem();
+                        itemManager.AddNewItem();
                         break;
                     case '2':
-                        var removeId = itemManager.RemoveItem();
+                        itemManager.RemoveItem();
                         Console.WriteLine();
                         break;
                     case '3':
-                        var detailId = itemManager.ItemDetail();
+                        itemManager.ItemDetail();
                         Console.WriteLine();
                         break;
                     case '4':
-                        var brandToShow = itemManager.CarBrandsByType();
+                        itemManager.CarBrandsByType();
                         Console.WriteLine();
                         break;
+
                     default:
                         Console.WriteLine("Action you entered does not exist");
                         break;
