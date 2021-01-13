@@ -26,6 +26,10 @@ namespace CarTry.App.Manager
             var operation = Console.ReadKey();
             if (_itemService.IsUserInputCorrect(operation, addNewItemMenu.Count))
             {
+                Console.WriteLine("Given incorrect values");
+            }
+            else
+            {
                 int carBrandChoosed;
                 Int32.TryParse(operation.KeyChar.ToString(), out carBrandChoosed);
                 string carBrandChosed = addNewItemMenu[carBrandChoosed - 1].Name;
@@ -35,25 +39,17 @@ namespace CarTry.App.Manager
                 var carModel = Console.ReadLine();
                 if (_itemService.IsUserInputCorrect(carModel))
                 {
-                    var lastId = _itemService.GetLastId();
-                    Item item = new Item(lastId + 1, carModel, carBrandChosed);
-                    _itemService.AddItem(item);
-                    Console.WriteLine();
+                    Console.WriteLine("Given incorrect values");
                 }
                 else
                 {
-                    Console.WriteLine("Given incorrect values");
-
+                    var lastId = _itemService.GetLastId();
+                    Item item = new Item(lastId + 1, carModel, carBrandChosed, DateTime.Now);
+                    _itemService.AddItem(item);
+                    Console.WriteLine();
                 }
             }
-            else
-            {
-                Console.WriteLine("Given incorrect values");
-
-            }
         }
-
-
 
         public void RemoveItem()
         {
@@ -84,9 +80,10 @@ namespace CarTry.App.Manager
             }
             else
             {
-                Console.WriteLine($"Car id: {productToShow.Id} ");
-                Console.WriteLine($"Car brand: {productToShow.CarBrand} ");
-                Console.WriteLine($"Car model: {productToShow.CarModel} ");
+                Console.WriteLine($"Car id: {productToShow.Id}");
+                Console.WriteLine($"Car brand: {productToShow.CarBrand}");
+                Console.WriteLine($"Car model: {productToShow.CarModel}");
+                Console.WriteLine($"Announcement of: {productToShow.CreatedDataTime}");
                 Console.WriteLine();
             }
         }
@@ -102,7 +99,20 @@ namespace CarTry.App.Manager
             }
             else
             {
-                Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model" }, a => a.Id, a => a.CarBrand, a => a.CarModel));
+                Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Day of announcement" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDataTime));
+            }
+        }
+
+        public void ShowAllCars()
+        {
+            var toShowAllCars = _itemService.ShowAllGivenCars();
+            if (toShowAllCars.Count == 0)
+            {
+                Console.WriteLine("There are no cars in datebase");
+            }
+            else
+            {
+                Console.WriteLine(toShowAllCars.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Day of announcement" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDataTime));
             }
         }
 

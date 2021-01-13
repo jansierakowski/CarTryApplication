@@ -10,11 +10,12 @@ namespace CarTry.Domain.Entity
         public string CarBrand { get; set; }
         public string CarModel { get; set; }
 
-        public Item(int id,string carModel, string carBrand)
+        public Item(int id,string carModel, string carBrand,DateTime dateTime)
         {
             CarModel = carModel;
             CarBrand = carBrand;
             Id = id;
+            CreatedDataTime = dateTime;
         }    
     }
 }

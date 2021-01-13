@@ -46,6 +46,10 @@ namespace CarTryApplication
                         itemManager.CarBrandsByType();
                         Console.WriteLine();
                         break;
+                    case '5':
+                        itemManager.ShowAllCars();
+                        Console.WriteLine();
+                        break;
 
                     default:
                         Console.WriteLine("Action you entered does not exist");

@@ -22,31 +22,41 @@ namespace CarTry.App.Concrete
             return toShow;
         }
 
+        public List<Item> ShowAllGivenCars()
+        {
+            List<Item> showAllCars = new List<Item>();
+            foreach (var item in Items)
+            {
+                showAllCars.Add(item);
+            }
+            return showAllCars;
+        }
+
         public bool IsUserInputCorrect(string v)
         {
             if (string.IsNullOrWhiteSpace(v))
             {
-                return false;
+                return true;
             }
             else
-                return true;
+                return false;
         }
 
         public bool IsUserInputCorrect(System.ConsoleKeyInfo keyGiven, int countedMenuOptions)
         {
             if (Int32.TryParse(keyGiven.KeyChar.ToString(), out int keyGivenInt))
             {
-                for (int i = 0; i < countedMenuOptions; i++)
+                for (int i = 1; i < countedMenuOptions+1; i++)
                 {
                     if (keyGivenInt == i)
                     {
-                        return true;
+                        return false;
                     }
                 }
-                return false;
+                return true;
             }
             else
-            { return false; }
+            { return true; }
         }
 
         public string FindBrand(string brand)

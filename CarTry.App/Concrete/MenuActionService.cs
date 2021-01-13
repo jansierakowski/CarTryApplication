@@ -38,6 +38,7 @@ namespace CarTry.App.Concrete
             AddItem(new MenuAction(2, "Delete a car test&try announcement", "Main"));
             AddItem(new MenuAction(3, "Search a car to test&try", "Main"));
             AddItem(new MenuAction(4, "Search a model by car brand to test&try", "Main"));
+            AddItem(new MenuAction(5, "Show all cars to test&try", "Main"));
 
             AddItem(new MenuAction(1, "Opel", "AddNewItemMenu"));
             AddItem(new MenuAction(2, "Volkswagen", "AddNewItemMenu"));
