@@ -9,11 +9,14 @@ namespace CarTry.App.Manager
     public class ItemManager
     {
         private readonly MenuActionService _actionService;
-        private ItemService _itemService;
-        public ItemManager(MenuActionService actionService, ItemService itemService)
+        private readonly ItemService _itemService;
+        private readonly DataService _dataService;
+        public ItemManager(MenuActionService actionService, ItemService itemService, DataService dataService)
         {
             _itemService = itemService;
             _actionService = actionService;
+            _dataService = dataService;
+            
         }
 
         public void AddNewItem()
@@ -23,7 +26,7 @@ namespace CarTry.App.Manager
             {
                 Console.WriteLine($"{addNewItemMenu[i].Id}. {addNewItemMenu[i].Name}");
             }
-            var operation = Console.ReadKey();
+            var operation = Console.ReadLine();
             if (_itemService.IsUserInputCorrect(operation, addNewItemMenu.Count))
             {
                 Console.WriteLine("Given incorrect values");
@@ -31,7 +34,7 @@ namespace CarTry.App.Manager
             else
             {
                 int carBrandChoosed;
-                Int32.TryParse(operation.KeyChar.ToString(), out carBrandChoosed);
+                Int32.TryParse(operation, out carBrandChoosed);
                 string carBrandChosed = addNewItemMenu[carBrandChoosed - 1].Name;
                 Console.WriteLine();
 
@@ -43,10 +46,20 @@ namespace CarTry.App.Manager
                 }
                 else
                 {
-                    var lastId = _itemService.GetLastId();
-                    Item item = new Item(lastId + 1, carModel, carBrandChosed, DateTime.Now);
-                    _itemService.AddItem(item);
-                    Console.WriteLine();
+                    Console.WriteLine("Please enter the city where the car is located");
+                    string carLocation = Console.ReadLine();
+                    if (_itemService.IsUserInputCorrect(carLocation))
+                    {
+                        Console.WriteLine("Given incorrect values");
+                    }
+                    else
+                    {
+                        var lastId = _itemService.GetLastId();
+                        Item item = new Item(lastId + 1, carModel, carBrandChosed, DateTime.Now, carLocation);
+                        _itemService.AddItem(item);
+                        _dataService.SaveXMLData("xmlFile", _itemService.GetAllItems());
+                        Console.WriteLine();
+                    }
                 }
             }
         }
@@ -64,6 +77,7 @@ namespace CarTry.App.Manager
             else
             {
                 _itemService.RemoveItem(item);
+                _dataService.SaveXMLData("xmlFile", _itemService.GetAllItems());
             }
         }
 
@@ -83,7 +97,8 @@ namespace CarTry.App.Manager
                 Console.WriteLine($"Car id: {productToShow.Id}");
                 Console.WriteLine($"Car brand: {productToShow.CarBrand}");
                 Console.WriteLine($"Car model: {productToShow.CarModel}");
-                Console.WriteLine($"Announcement of: {productToShow.CreatedDataTime}");
+                Console.WriteLine($"Advert data: {productToShow.CreatedDateTime}");
+                Console.WriteLine($"City: {productToShow.CarLocation}");
                 Console.WriteLine();
             }
         }
@@ -99,7 +114,22 @@ namespace CarTry.App.Manager
             }
             else
             {
-                Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Day of announcement" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDataTime));
+                Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Advert data", "City" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDateTime, a => a.CarLocation));
+            }
+        }
+
+        public void ShowCarByCity()
+        {
+            Console.WriteLine("Enter city in which you want to test the car: ");
+            var carLocation = Console.ReadLine();
+            var toShow = _itemService.GetCarByCity(carLocation);
+            if (toShow.Count == 0)
+            {
+                Console.WriteLine("There are no cars in given city");
+            }
+            else
+            {
+                Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Advert data", "City" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDateTime, a=>a.CarLocation));
             }
         }
 
@@ -112,7 +142,7 @@ namespace CarTry.App.Manager
             }
             else
             {
-                Console.WriteLine(toShowAllCars.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Day of announcement" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDataTime));
+                Console.WriteLine(toShowAllCars.ToStringTable(new[] { "Id", "Car Brand", "Car Model", "Advert data", "City" }, a => a.Id, a => a.CarBrand, a => a.CarModel, a => a.CreatedDateTime, a => a.CarLocation));
             }
         }
 

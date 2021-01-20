@@ -9,6 +9,11 @@ namespace CarTry.App.Concrete
 {
     public class ItemService : BaseService<Item>
     {
+        public ItemService()
+        {
+            DataService dataService = new DataService();
+            Items = dataService.LoadXMLData("xmlFile");
+        }
         public List<Item> GetCarBrandByType(string carBrand)
         {
             List<Item> toShow = new List<Item>();
@@ -42,9 +47,9 @@ namespace CarTry.App.Concrete
                 return false;
         }
 
-        public bool IsUserInputCorrect(System.ConsoleKeyInfo keyGiven, int countedMenuOptions)
+        public bool IsUserInputCorrect(string keyGiven, int countedMenuOptions)
         {
-            if (Int32.TryParse(keyGiven.KeyChar.ToString(), out int keyGivenInt))
+            if (Int32.TryParse(keyGiven, out int keyGivenInt))
             {
                 for (int i = 1; i < countedMenuOptions+1; i++)
                 {
@@ -65,5 +70,17 @@ namespace CarTry.App.Concrete
             return itemById.CarBrand;
         }
 
+        public List<Item> GetCarByCity(string carLocation)
+        {
+            List<Item> toShow = new List<Item>();
+            foreach (var item in Items)
+            {
+                if (item.CarLocation == carLocation)
+                {
+                    toShow.Add(item);
+                }
+            }
+            return toShow;
+        }
     }
 }

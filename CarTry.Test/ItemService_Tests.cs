@@ -8,7 +8,7 @@ using Xunit;
 
 namespace CarTry.Test
 {
-    public class BaseService_Test
+    public class ItemService_Tests
     {
         [Fact]
         public void GetItemById_ShouldReturnIdSameAsGivenItem()

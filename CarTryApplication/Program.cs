@@ -13,7 +13,8 @@ namespace CarTryApplication
 
             MenuActionService actionService = new MenuActionService();
             ItemService itemService = new ItemService();
-            ItemManager itemManager = new ItemManager(actionService, itemService);
+            DataService dataService = new DataService();
+            ItemManager itemManager = new ItemManager(actionService, itemService, dataService);
 
             Console.WriteLine("Welcome in first car test&try community");
             Console.WriteLine("Select what you want to do:");
@@ -48,6 +49,10 @@ namespace CarTryApplication
                         break;
                     case '5':
                         itemManager.ShowAllCars();
+                        Console.WriteLine();
+                        break;                   
+                    case '6':
+                        itemManager.ShowCarByCity();
                         Console.WriteLine();
                         break;
 
